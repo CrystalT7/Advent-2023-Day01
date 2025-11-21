@@ -26,38 +26,51 @@ public class Main {
         // do part 1
         // find the first digit and last digit of the String
         // return the number put together
-        ArrayList<Integer> numbers = new ArrayList<>();
-        boolean isInt = false;
+
         int firstNum = 0;
         int lastNum = 0;
-        int count = 0;
-        String calibrated = "";
-        int calibrated2;
+
         for(int i = 0; i < line.length(); i++){
-            try{
-                Integer.parseInt(line.substring(i,i+1));
-                count++;
-                isInt = true;
-            } catch (NumberFormatException e){
-                isInt = false;
+            char letter = line.charAt(i);
+            if(letter >= '0' && letter <= '9'){
+                int number = letter - '0';
+                if(firstNum == 0){
+                    firstNum = number;
+                }
+                lastNum = number;
             }
-            if (isInt && count == 1) {
-                firstNum = Integer.parseInt(line.substring(i,i+1));
-            }
-            if(isInt && count != 1){
-                lastNum = Integer.parseInt(line.substring(i, i+1));
-            }
-
         }
-        calibrated = String.valueOf(firstNum) + String.valueOf(lastNum);
-        calibrated2 = Integer.parseInt(calibrated);
-        numbers.add(calibrated2);
-
+        return firstNum * 10 + lastNum;
     }
 
     public static int getPartTwoNumber(String line) {
-        // do part 2
-        return 0;
+        ArrayList<Integer> nums = new ArrayList<>();
+        String[] numbers = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+        String [] numToWord = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+
+        for(int i = 0; i < line.length(); i++){
+            String something = line.substring(i, i +1);
+            for(int j = 0; j < numbers.length; j++){
+                if(something.equals(numbers[j])){
+                    nums.add(j);
+                }
+            }
+
+            for(int k = 0; k < numToWord.length; k++){
+                String word = numToWord[k];
+                if(i + word.length() <= line.length()){
+                    String part = line.substring(i, i + word.length());
+                    if(part.equals(word)) {
+                        nums.add(k);
+                    }
+                }
+            }
+        }
+        int first = nums.get(0);
+        int last = nums.get(nums.size()-1);
+        return first * 10 + last;
+
+
     }
 
     public static ArrayList<String> getFileData(String fileName) {
