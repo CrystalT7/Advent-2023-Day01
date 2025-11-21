@@ -26,7 +26,33 @@ public class Main {
         // do part 1
         // find the first digit and last digit of the String
         // return the number put together
-        return 0;
+        ArrayList<Integer> numbers = new ArrayList<>();
+        boolean isInt = false;
+        int firstNum = 0;
+        int lastNum = 0;
+        int count = 0;
+        String calibrated = "";
+        int calibrated2;
+        for(int i = 0; i < line.length(); i++){
+            try{
+                Integer.parseInt(line.substring(i,i+1));
+                count++;
+                isInt = true;
+            } catch (NumberFormatException e){
+                isInt = false;
+            }
+            if (isInt && count == 1) {
+                firstNum = Integer.parseInt(line.substring(i,i+1));
+            }
+            if(isInt && count != 1){
+                lastNum = Integer.parseInt(line.substring(i, i+1));
+            }
+
+        }
+        calibrated = String.valueOf(firstNum) + String.valueOf(lastNum);
+        calibrated2 = Integer.parseInt(calibrated);
+        numbers.add(calibrated2);
+
     }
 
     public static int getPartTwoNumber(String line) {
