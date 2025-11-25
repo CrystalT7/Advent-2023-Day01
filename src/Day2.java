@@ -1,3 +1,4 @@
+/*
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -26,22 +27,62 @@ public class Day2 {
         int blueCubes = 14;
 
         int gameID = Integer.parseInt(line.substring(5, line.indexOf(":")));
-        String[] colorVals = line.substring(line.indexOf(":")+2).split(";");
+        String[] colorVals = line.substring(line.indexOf(":")+2).split("; ");
         for(int i = 0; i < colorVals.length; i++){
-            String[] colorVals2 = colorVals[i].split(",");
+            String[] colorVals2 = colorVals[i].split(", ");
             for(int j = 0; j < colorVals2.length; j++){
-
+                int s = colorVals2[j].indexOf(" ");
+                if (colorVals2[j].contains("red")) {
+                    if (Integer.parseInt(colorVals2[j].substring(0, s)) > 12) {
+                        return 0;
+                    }
+                }
+                if (colorVals2[j].contains("green")) {
+                    if (Integer.parseInt(colorVals2[j].substring(0, s)) > 13) {
+                        return 0;
+                    }
+                }
+                if (colorVals2[j].contains("blue")) {
+                    if (Integer.parseInt(colorVals2[j].substring(0, s)) > 14) {
+                        return 0;
+                    }
+                }
             }
         }
+        return gameID;
 
-
-
-        return 0;
     }
 
     public static int day2getPartTwoNumber(String line){
-        return 0;
+        int gameID = Integer.parseInt(line.substring(5, line.indexOf(":")));
+        String[] val = line.substring(line.indexOf(":") + 2).split("; ");
+        int red = 0;
+        int green = 0;
+        int blue = 0;
+        for (String str : val) {
+            String[] val2 = str.split(", ");
+            for (String str2 : val2) {
+                int s = str2.indexOf(" ");
+                if (str2.contains("red")) {
+                    if (Integer.parseInt(str2.substring(0, s)) > red) {
+                        red = Integer.parseInt(str2.substring(0, s));
+                    }
+                }
+                if (str2.contains("green")) {
+                    if (Integer.parseInt(str2.substring(0, s)) > green) {
+                        green = Integer.parseInt(str2.substring(0, s));
+                    }
+                }
+                if (str2.contains("blue")) {
+                    if (Integer.parseInt(str2.substring(0, s)) > blue) {
+                        blue = Integer.parseInt(str2.substring(0, s));
+                    }
+                }
+            }
+        }
+        return red * green * blue;
     }
+
 
 
     public static ArrayList<String> getFileData(String fileName) {
@@ -62,3 +103,4 @@ public class Day2 {
     }
 
 }
+*/
